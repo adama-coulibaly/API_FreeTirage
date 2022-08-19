@@ -1,13 +1,14 @@
 package com.FreeTirage.FreeTirage.Models;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
+@Data
 @Getter
 @Setter
+@NoArgsConstructor
 public class Postulants {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

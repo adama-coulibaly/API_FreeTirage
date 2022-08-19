@@ -1,4 +1,4 @@
 package com.FreeTirage.FreeTirage.Controllers;
 
-public class Essai {
+public class Controle {
 }

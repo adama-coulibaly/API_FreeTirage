@@ -1,18 +1,26 @@
 package com.FreeTirage.FreeTirage.Models;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
 
 @Entity
-@Table(name = "Postulants")
+@Getter
+@Setter
 public class Postulants {
-
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_postulant")
     private Long id_postulant;
     private String nom_postulant;
     private String prenom_postulant;
     private String numero_postulant;
     private String email_postulant;
+
+    //
+    @ManyToOne
+    private ListePostulant listepostulant;
+
 
 }

@@ -14,4 +14,6 @@ public interface ListePostulantService {
     ListePostulant update(Long id_liste_postulant, ListePostulant listePostulant);
 
     String delete(Long id_liste_postulant);
+
+
 }

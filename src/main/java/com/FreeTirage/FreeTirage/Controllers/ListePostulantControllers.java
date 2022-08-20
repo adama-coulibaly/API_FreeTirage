@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Random;
 
 @Api(value = "hello", description = "Les requetes possible sur ma table pays")
 @RestController
@@ -19,8 +20,9 @@ public class ListePostulantControllers {
 
     /* Permet de creer une entrée pour*/
     private final ListePostulantService listePostulantService;
-    @PostMapping("/add")
+
     @ApiOperation(value = "Permet de creer une entrée pour un pays")
+    @PostMapping("/add")
     public ListePostulant add(@RequestBody ListePostulant listePostulant) {
         return listePostulantService.add(listePostulant);
     }

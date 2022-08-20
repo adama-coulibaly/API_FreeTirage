@@ -14,4 +14,8 @@ public interface PostulantService {
 
 
     List<Postulants> lire();
+
+    Iterable<Object[]> listerPostulants();
+
+
 }

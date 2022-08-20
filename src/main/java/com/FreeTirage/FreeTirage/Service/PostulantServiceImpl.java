@@ -25,6 +25,11 @@ public class PostulantServiceImpl implements PostulantService{
     }
 
     @Override
+    public Iterable<Object[]> listerPostulants() {
+        return this.postulantRepository.listerPostulants();
+    }
+
+    @Override
     public Postulants update(Long id_postulant, Postulants postulants) {
         return postulantRepository.findById(id_postulant)
                 .map(postulants1 ->  {

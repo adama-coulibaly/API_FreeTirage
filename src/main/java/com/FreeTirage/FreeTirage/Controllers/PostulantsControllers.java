@@ -1,12 +1,21 @@
 package com.FreeTirage.FreeTirage.Controllers;
 
 import com.FreeTirage.FreeTirage.Models.Postulants;
+import com.FreeTirage.FreeTirage.Repository.PostulantRepository;
 import com.FreeTirage.FreeTirage.Service.PostulantService;
+import com.univocity.parsers.common.record.Record;
+import com.univocity.parsers.csv.CsvParser;
+import com.univocity.parsers.csv.CsvParserSettings;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 @Api(value = "hello", description = "Les requetes possible sur ma table pays")
@@ -18,13 +27,48 @@ import java.util.List;
 
         /* Permet de creer une entrée pour*/
         private final PostulantService postulantService;
+
+// Insertion des données depuis un fichiers CSV
+    @Autowired
+    PostulantRepository service;
+    @PostMapping("/upload/{listepostulant_id_liste_postulant}")
+    public String uploadData(@RequestParam("file") MultipartFile file) throws IOException {
+
+        List<Postulants> listePostulants = new ArrayList<>();
+
+        InputStream inputStream = file.getInputStream();
+
+        CsvParserSettings setting = new CsvParserSettings();
+        setting.setHeaderExtractionEnabled(true);
+        CsvParser parser = new  CsvParser(setting);
+        List<Record> passerAllRecord = parser.parseAllRecords(inputStream);
+
+        passerAllRecord.forEach(record -> {
+            Postulants account = new Postulants();
+            account.setNom_postulant(record.getString("nom_postulant"));
+            account.setPrenom_postulant(record.getString("prenom_postulant"));
+            account.setEmail_postulant(record.getString("email_postulant"));
+            account.setNumero_postulant(record.getString("numero_postulant"));
+         //   account.setListepostulant(record.getInt(int i));
+            listePostulants.add(account);
+        });
+        service.saveAll(listePostulants);
+
+
+
+        return "Fichier telecharger avec succes";
+    }
+
+
+    /*
         @PostMapping("/add")
         @ApiOperation(value = "Permet de creer une entrée pour un pays")
         public Postulants add(@RequestBody Postulants postulants) {
             return postulantService.add(postulants);
         }
 
-        /*Permet d'afficher la liste de toute les  postulants*/
+        Permet d'afficher la liste de toute les  postulants
+    */
         @GetMapping("/read")
         @ApiOperation(value = "Permet d'afficher la liste de toute les  pays")
         public List<Postulants> lire() {

@@ -40,6 +40,7 @@ import java.util.Random;
         PostulantRepository service;
         @PostMapping("/upload/{libelle}")
         public String uploadData(@RequestParam("file") MultipartFile file, ListePostulant listeP ) throws IOException {
+
             try
             {
             listeP.setDate(new Date());
@@ -72,7 +73,7 @@ import java.util.Random;
             }
 
         }
-        //Lister les postulants
+        //Lister les postulants avec les listes possiblesS
             @GetMapping("/listerPostulants")
             public Iterable<Object[]> listerPostulants() {
                 return this.postulantService.listerPostulants();

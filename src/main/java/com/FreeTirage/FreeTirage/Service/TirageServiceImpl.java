@@ -53,7 +53,10 @@ public class TirageServiceImpl implements TirageService {
         return list;
     }
 
-
+    @Override
+    public Iterable<Object[]> personnesTirer() {
+        return tirageRepository.personnesTirer();
+    }
 
 
     @Override
@@ -73,22 +76,5 @@ public class TirageServiceImpl implements TirageService {
        tirageRepository.deleteById(id_tirage);
         return "Tirage supprimé";
     }
-/*
-    @Override
-    public Tirage trouverTirageParListeLibelle(String libelleirage) {
-        return tirageRepository.findByLibelleTirage(libelleirage);
-    }
-
-    @Override
-    public int creer(Long idPostulant, Long idTirage) {
-        return tirageRepository.InserePostulantTrier(idPostulant,idTirage);
-    }
-
-    @Override
-    public Iterable<Object[]> AfficherTousPostulants() {
-        return tirageRepository.RecupererationAfficher();
-    }
-
- */
 
 }

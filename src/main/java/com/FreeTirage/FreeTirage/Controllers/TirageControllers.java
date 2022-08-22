@@ -41,7 +41,7 @@ public class TirageControllers {
 
     //***********************************************Les nouvelles modifications
 
-    @PostMapping("/creerTirage/{libelle}/{nombre}")
+    @PostMapping("/faireTirage/{libelle}/{nombre}")
     public Object create(@PathVariable("libelle") String libelle, @PathVariable("nombre") int nbre)
     {
         ListePostulant listePostulant=listePostulantService.RetrouverParLibelle(libelle);
@@ -58,6 +58,11 @@ public class TirageControllers {
             return "Cette liste n'existe pas!!";
         }
 
+    }
+
+    @GetMapping("/afficherListe")
+    public Iterable<Object[]> personnesTirer() {
+        return tirageService.personnesTirer();
     }
 
 }

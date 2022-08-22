@@ -17,6 +17,8 @@ public interface TirageService {
 
     List<Postulants> creerTirage(Tirage tirage, List<Postulants> listATrier, int nbre);
 
+    Iterable<Object[]> personnesTirer();
+
 
 
 

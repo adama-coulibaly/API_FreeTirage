@@ -1,5 +1,6 @@
 package com.FreeTirage.FreeTirage.Service;
 
+import com.FreeTirage.FreeTirage.Models.ListePostulant;
 import com.FreeTirage.FreeTirage.Models.Postulants;
 
 import java.util.List;
@@ -15,7 +16,6 @@ public interface PostulantService {
 
     List<Postulants> lire();
 
-    Iterable<Object[]> listerPostulants();
+    List<Postulants> listePost(ListePostulant listePostulant);
 
-
-}
+    }

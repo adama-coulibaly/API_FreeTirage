@@ -1,10 +1,13 @@
 package com.FreeTirage.FreeTirage.Repository;
 
+import com.FreeTirage.FreeTirage.Models.ListePostulant;
 import com.FreeTirage.FreeTirage.Models.Postulants;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface PostulantRepository extends JpaRepository<Postulants, Long> {
 
@@ -17,5 +20,11 @@ public interface PostulantRepository extends JpaRepository<Postulants, Long> {
             "\n",nativeQuery = true)
 
     Iterable<Object[]> listerPostulants();
+
+    @Query(value = "SELECT postulants.id_postulant FROM postulants;",nativeQuery = true)
+    Iterable<Object[]> laListeID();
+
+    List<Postulants> findByListepostulant(ListePostulant listePostulant);
+
 
 }

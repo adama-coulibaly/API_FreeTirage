@@ -4,7 +4,6 @@ import com.FreeTirage.FreeTirage.Models.ListePostulant;
 import com.FreeTirage.FreeTirage.Models.Postulants;
 import com.FreeTirage.FreeTirage.Repository.PostulantRepository;
 import com.FreeTirage.FreeTirage.Service.ListePostulantService;
-import com.FreeTirage.FreeTirage.Service.ListePostulantServiceImpl;
 import com.FreeTirage.FreeTirage.Service.PostulantService;
 import com.univocity.parsers.common.record.Record;
 import com.univocity.parsers.csv.CsvParser;
@@ -18,12 +17,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
-@Api(value = "hello", description = "Les requetes possible sur ma table pays")
+@Api(value = "hello")
     @RestController
     @RequestMapping("/postulant/")
     @AllArgsConstructor
@@ -74,11 +70,6 @@ import java.util.Random;
 
         }
         //Lister les postulants avec les listes possiblesS
-            @GetMapping("/listerPostulants")
-            public Iterable<Object[]> listerPostulants() {
-                return this.postulantService.listerPostulants();
-            }
-
 
         @GetMapping("/read")
         @ApiOperation(value = "Permet d'afficher la liste de toute les  pays")
@@ -88,27 +79,30 @@ import java.util.Random;
 
         /*Permet de modifier un postulants donné*/
         @PutMapping("/update/{id_postulant}")
-        @ApiOperation(value = "Permet de modifier un pays donné")
+        @ApiOperation(value = "Permet de modifier un postulant donné")
         public Postulants update(@PathVariable Long id_postulant, @RequestBody Postulants postulants) {
             return postulantService.update(id_postulant, postulants);
         }
 
         /*Permet de supprimer un postulant donnée*/
         @DeleteMapping("/delete/{id_postulant}")
-        @ApiOperation(value = "Permet de supprimer un pays donnée")
+        @ApiOperation(value = "Permet de supprimer un postulant donnée")
         public String supprimer(@PathVariable Long id_postulant) {
             return postulantService.delete(id_postulant);
         }
 
 
         @PostMapping("/add")
-        @ApiOperation(value = "Permet de creer une entrée pour un pays")
+        @ApiOperation(value = "Permet de creer une entrée pour un postulant")
         public Postulants add(@RequestBody Postulants postulants) {
             return this.postulantService.add(postulants);
         }
 
-     /*
-        Permet d'afficher la liste de toute les  postulants
-    */
-
+    public String Afficher(@PathVariable Long id_postulant) {
+        return postulantService.delete(id_postulant);
     }
+
+
+
+
+}

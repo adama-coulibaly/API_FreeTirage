@@ -21,6 +21,4 @@ public class ListePostulant {
     private String libelle;
     private Date date;
 
-    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
-    private List<Postulants> postulantsList = new ArrayList<>();
-}
+   }

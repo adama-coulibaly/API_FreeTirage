@@ -3,10 +3,12 @@ package com.FreeTirage.FreeTirage.Models;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
 @NoArgsConstructor
 public class Postulants {
     @Id
@@ -21,6 +23,9 @@ public class Postulants {
     //
     @ManyToOne
     private ListePostulant listepostulant;
+
+    @ManyToMany
+    private List<Tirage> tirages;
 
 
 }

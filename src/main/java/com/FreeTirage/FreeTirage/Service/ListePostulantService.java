@@ -3,6 +3,7 @@ package com.FreeTirage.FreeTirage.Service;
 import com.FreeTirage.FreeTirage.Models.ListePostulant;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ListePostulantService {
 
@@ -16,5 +17,9 @@ public interface ListePostulantService {
     String delete(Long id_liste_postulant);
 
 
-   // List<Iterable[]> mesID(Long integer);
+    Optional<ListePostulant> lesPostulants(Long id_postulant);
+
+    ListePostulant RetrouverParLibelle(String libelle);
+
+
 }

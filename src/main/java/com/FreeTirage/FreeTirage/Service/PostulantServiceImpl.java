@@ -25,8 +25,8 @@ public class PostulantServiceImpl implements PostulantService{
     }
 
     @Override
-    public Iterable<Object[]> listerPostulants() {
-        return this.postulantRepository.listerPostulants();
+    public List<Postulants> listePost(ListePostulant listePostulant) {
+        return postulantRepository.findByListepostulant(listePostulant);
     }
 
     @Override
@@ -49,4 +49,5 @@ public class PostulantServiceImpl implements PostulantService{
         return "Postulant supprimé";
     }
 
-}
+
+   }

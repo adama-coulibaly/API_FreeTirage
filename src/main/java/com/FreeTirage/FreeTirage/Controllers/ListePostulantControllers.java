@@ -20,7 +20,7 @@ public class ListePostulantControllers {
     /* Permet de creer une entrée pour*/
     private final ListePostulantService listePostulantService;
 
-    @ApiOperation(value = "Permet de creer une entrée pour un pays")
+    @ApiOperation(value = "Permet de creer une entrée pour un postulant")
     @PostMapping("/add")
     public ListePostulant add(@RequestBody ListePostulant listePostulant) {
         return listePostulantService.add(listePostulant);
@@ -28,21 +28,21 @@ public class ListePostulantControllers {
 
     /*Permet d'afficher la liste de toute les  postulants*/
     @GetMapping("/read")
-    @ApiOperation(value = "Permet d'afficher la liste de toute les  pays")
+    @ApiOperation(value = "Permet d'afficher la liste de toute les  postulants")
     public List<ListePostulant> lire() {
         return listePostulantService.lire();
     }
 
     /*Permet de modifier un postulants donné*/
     @PutMapping("/update/{id_postulant}")
-    @ApiOperation(value = "Permet de modifier un pays donné")
+    @ApiOperation(value = "Permet de modifier un postulant donné")
     public ListePostulant update(@PathVariable Long id_liste_postulant, @RequestBody ListePostulant listePostulant) {
         return listePostulantService.update(id_liste_postulant, listePostulant);
     }
 
     /*Permet de supprimer un postulant donnée*/
     @DeleteMapping("/delete/{id_postulant}")
-    @ApiOperation(value = "Permet de supprimer un pays donnée")
+    @ApiOperation(value = "Permet de supprimer un postulant donnée")
     public String supprimer(@PathVariable Long id_liste_postulant) {
         return listePostulantService.delete(id_liste_postulant);
     }

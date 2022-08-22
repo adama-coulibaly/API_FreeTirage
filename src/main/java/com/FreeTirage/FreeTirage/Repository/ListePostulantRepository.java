@@ -14,4 +14,8 @@ public interface ListePostulantRepository extends JpaRepository<ListePostulant, 
     @Query(value = "SELECT postulants.id_postulant FROM postulants WHERE postulants.id_postulant = :ID",nativeQuery = true)
 
     Iterable<Object[]> mesID(@Param("ID") Long ID);
+
+    ListePostulant findByLibelle(String libelle);
+
+
 }

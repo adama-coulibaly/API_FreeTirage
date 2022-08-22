@@ -16,4 +16,5 @@ public interface ListePostulantService {
     String delete(Long id_liste_postulant);
 
 
+   // List<Iterable[]> mesID(Long integer);
 }

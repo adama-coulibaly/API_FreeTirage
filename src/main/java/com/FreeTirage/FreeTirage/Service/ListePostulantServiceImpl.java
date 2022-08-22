@@ -39,4 +39,6 @@ public class ListePostulantServiceImpl implements ListePostulantService{
         listePostulantRepository.deleteById(id_liste_postulant);
         return "La liste de Postulant supprimé";
     }
+
+
 }

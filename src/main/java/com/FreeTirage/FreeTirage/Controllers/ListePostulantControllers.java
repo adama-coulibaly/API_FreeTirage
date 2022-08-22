@@ -9,7 +9,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Random;
 
 @Api(value = "hello", description = "Les requetes possible sur ma table pays")
 @RestController
@@ -47,4 +46,7 @@ public class ListePostulantControllers {
     public String supprimer(@PathVariable Long id_liste_postulant) {
         return listePostulantService.delete(id_liste_postulant);
     }
+
+
+
 }

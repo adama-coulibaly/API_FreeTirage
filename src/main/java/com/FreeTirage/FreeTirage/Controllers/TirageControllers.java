@@ -25,14 +25,7 @@ public class TirageControllers {
     private final PostulantService postulantService;
     private  final ListePostulantService listePostulantService;
 
-    /*Permet de modifier un postulants donné*/
-    @PutMapping("/update/{id_tirage}")
-    @ApiOperation(value = "Permet de modifier un ppostulant donné")
-    public Tirage update(@PathVariable Long id_tirage, @RequestBody Tirage tirage) {
-        return tirageService.update(id_tirage, tirage);
-    }
-
-    /*Permet de supprimer un postulant donnée*/
+    /*Permet de supprimer un tirage donnée*/
     @DeleteMapping("/delete/{id_tirage}")
     @ApiOperation(value = "Permet de supprimer un postulant donnée")
     public String supprimer(@PathVariable Long id_tirage) {
@@ -41,6 +34,9 @@ public class TirageControllers {
 
     //***********************************************Les nouvelles modifications
 
+
+
+    //La methode permettant de faire un tri sur les tirages
     @PostMapping("/faireTirage/{libelle}/{nombre}")
     public Object create(@PathVariable("libelle") String libelle, @PathVariable("nombre") int nbre)
     {
@@ -48,10 +44,8 @@ public class TirageControllers {
         if(listePostulant!=null){
             Tirage tirage=new Tirage();
             tirage.setNbre_postulant_tirer(nbre);
-            tirage.setLibelle_tirage("Resultat"+libelle);
+            tirage.setLibelle_tirage(libelle);
             tirage.setDate_tirage(new Date());
-
-
             return tirageService.creerTirage(tirage,postulantService.listePost(listePostulant),nbre);
 
         }else {
@@ -60,7 +54,8 @@ public class TirageControllers {
 
     }
 
-    @GetMapping("/afficherListe")
+    // AFFICHER LA LISTE
+    @GetMapping("/afficherListe/{libelle}")
     public Iterable<Object[]> personnesTirer() {
         return tirageService.personnesTirer();
     }

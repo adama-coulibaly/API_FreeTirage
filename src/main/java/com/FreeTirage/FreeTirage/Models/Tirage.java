@@ -1,6 +1,7 @@
 package com.FreeTirage.FreeTirage.Models;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,8 +9,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Getter
-@Setter
+@Data
 public class Tirage {
 
     @Id

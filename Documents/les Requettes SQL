@@ -1,0 +1,10 @@
+La requette permettant de créer un utilisateur et lui donnnéé les droits de selection
+et modification sur notre base de donnée;
+
+GRANT SELECT,UPDATE ON freetirage.* TO 'user2'@'localhost';
+
+
+
+La requette permettant de créer un utilisateur et lui donnnéé les droits de selection sur notre base de donnée;
+
+GRANT SELECT ON freetirage.* TO 'user1'@'localhost';

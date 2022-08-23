@@ -54,10 +54,12 @@ public class TirageControllers {
 
     }
 
-    // AFFICHER LA LISTE
-    @GetMapping("/afficherListe/{libelle}")
-    public Iterable<Object[]> personnesTirer() {
-        return tirageService.personnesTirer();
+
+    @GetMapping("/listerTiragrePersonnes/{libelle}")
+    public Iterable<Object[]> personnesTirer(@PathVariable("libelle") String libelle) {
+        return tirageService.personnesTirer(libelle);
     }
+
+
 
 }

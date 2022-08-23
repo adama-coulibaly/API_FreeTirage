@@ -2,6 +2,7 @@ package com.FreeTirage.FreeTirage.Service;
 
 import com.FreeTirage.FreeTirage.Models.Postulants;
 import com.FreeTirage.FreeTirage.Models.Tirage;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -17,20 +18,10 @@ public interface TirageService {
 
     List<Postulants> creerTirage(Tirage tirage, List<Postulants> listATrier, int nbre);
 
-    Iterable<Object[]> personnesTirer();
-
-
-
-
-
-
-
-
-
-
-
     /*
-    // Les nouvelles modifications
+     Iterable<Object[]> personnesTirer(String libelle);
+
+     Les nouvelles modifications
 
 
     Tirage trouverTirageParListeLibelle(String libelleirage);
@@ -40,6 +31,7 @@ public interface TirageService {
     Iterable<Object[]> AfficherTousPostulants();
 */
 
+    Iterable<Object[]> personnesTirer(String libelle);
 
 
 }

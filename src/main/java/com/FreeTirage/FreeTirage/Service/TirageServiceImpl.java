@@ -53,10 +53,6 @@ public class TirageServiceImpl implements TirageService {
         return list;
     }
 
-    @Override
-    public Iterable<Object[]> personnesTirer() {
-        return tirageRepository.personnesTirer();
-    }
 
 
     @Override
@@ -75,6 +71,11 @@ public class TirageServiceImpl implements TirageService {
     public String delete(Long id_tirage) {
        tirageRepository.deleteById(id_tirage);
         return "Tirage supprimé";
+    }
+
+    @Override
+    public Iterable<Object[]> personnesTirer(String libelle) {
+        return tirageRepository.personnesTirer(libelle);
     }
 
 }

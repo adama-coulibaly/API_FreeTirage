@@ -9,10 +9,12 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Api(value = "hello", description = "Les requetes possible sur ma table pays")
 @RestController
 @RequestMapping("/listepostulant")
+@CrossOrigin(origins = "http://localhost:4200")
 @AllArgsConstructor
 
 public class ListePostulantControllers {
@@ -34,8 +36,7 @@ public class ListePostulantControllers {
     }
 
     /*Permet de modifier un postulants donné*/
-    @PutMapping("/update/{id_postulant}")
-    @ApiOperation(value = "Permet de modifier un postulant donné")
+    @PatchMapping("/update/{id_postulant}")
     public ListePostulant update(@PathVariable Long id_liste_postulant, @RequestBody ListePostulant listePostulant) {
         return listePostulantService.update(id_liste_postulant, listePostulant);
     }
@@ -46,6 +47,34 @@ public class ListePostulantControllers {
     public String supprimer(@PathVariable Long id_liste_postulant) {
         return listePostulantService.delete(id_liste_postulant);
     }
+
+    /*@GetMapping("/uneListe/{id_liste_postulant}")
+    public ListePostulant uneListe(@PathVariable("id_liste_postulant") Long id_liste_postulant){
+
+        return listePostulantService.uneListe(id_liste_postulant);
+    }*/
+
+    @GetMapping("/uneListe/{id_liste_postulant}")
+    public List<ListePostulant> uneListe(@PathVariable("id_liste_postulant") Long id_liste_postulant){
+
+        return listePostulantService.trouverParListe(id_liste_postulant);
+    }
+//Les listes tirées
+
+    @GetMapping("/listeTirer")
+    public int lesListesTirer(){
+        return listePostulantService.listeTirer();
+    }
+
+
+    @GetMapping("/listeRecuperer/{idliste}")
+    public  List<ListePostulant> trouverListe(@PathVariable() Long idliste ){
+        return listePostulantService.trouverParListe(idliste);
+    }
+
+
+
+
 
 
 

@@ -23,7 +23,7 @@ import java.util.*;
     @RestController
     @RequestMapping("/postulant/")
     @AllArgsConstructor
-
+@CrossOrigin(origins = "http://localhost:4200")
     public class PostulantsControllers {
 
         /* Permet de creer une entrée pour*/
@@ -40,6 +40,7 @@ import java.util.*;
             try
             {
             listeP.setDate(new Date());
+
             ListePostulant pliste= lpservice.add(listeP);
 
             List<Postulants> listePostulants = new ArrayList<>();
@@ -55,7 +56,9 @@ import java.util.*;
                    postulants.setPrenom_postulant(record.getString("prenom_postulant"));
                    postulants.setEmail_postulant(record.getString("email_postulant"));
                    postulants.setNumero_postulant(record.getString("numero_postulant"));
+
                    postulants.setListepostulant(pliste);
+
                    listePostulants.add(postulants);
                 });
 
@@ -72,7 +75,7 @@ import java.util.*;
         //Lister les postulants avec les listes possiblesS
 
         @GetMapping("/read")
-        @ApiOperation(value = "Permet d'afficher la liste de toute les  pays")
+        @ApiOperation(value = "Permet d'afficher la liste de toute les  postulants")
         public List<Postulants> lire() {
             return postulantService.lire();
         }
@@ -94,8 +97,12 @@ import java.util.*;
 
         @PostMapping("/add")
         @ApiOperation(value = "Permet de creer une entrée pour un postulant")
-        public Postulants add(@RequestBody Postulants postulants) {
-            return this.postulantService.add(postulants);
+        public String add(@RequestBody Postulants postulants) {
+
+
+
+             this.postulantService.add(postulants);
+            return "postulant ajouter avec succes";
         }
 
     public String Afficher(@PathVariable Long id_postulant) {

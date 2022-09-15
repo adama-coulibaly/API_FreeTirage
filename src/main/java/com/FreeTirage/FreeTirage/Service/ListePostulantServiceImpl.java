@@ -15,6 +15,8 @@ public class ListePostulantServiceImpl implements ListePostulantService{
 
     @Override
     public ListePostulant add(ListePostulant listePostulant) {
+
+        listePostulant.setNbreTirage(0);
         return listePostulantRepository.save(listePostulant);
     }
 
@@ -38,9 +40,24 @@ public class ListePostulantServiceImpl implements ListePostulantService{
     }
 
     @Override
+    public ListePostulant modifier(Long id_liste_postulant) {
+        return listePostulantRepository.findById(id_liste_postulant).map(
+                md->{
+                    md.setNbreTirage(listePostulantRepository.findById(id_liste_postulant).get().getNbreTirage()+1);
+                    return listePostulantRepository.save(md);
+                }
+        ).orElseThrow(() -> new RuntimeException("La liste de Postulant non trouvé"));
+    }
+
+    @Override
     public String delete(Long id_liste_postulant) {
         listePostulantRepository.deleteById(id_liste_postulant);
         return "La liste de Postulant supprimé";
+    }
+
+    @Override
+    public int listeTirer() {
+        return listePostulantRepository.listeTirer();
     }
 
     @Override
@@ -52,6 +69,17 @@ public class ListePostulantServiceImpl implements ListePostulantService{
     public ListePostulant RetrouverParLibelle(String libelle) {
         return listePostulantRepository.findByLibelle(libelle);
     }
+
+    @Override
+    public ListePostulant uneListe(Long id_liste_postulant) {
+        return listePostulantRepository.findById(id_liste_postulant).get();
+    }
+
+    @Override
+    public List<ListePostulant> trouverParListe(Long id) {
+        return this.listePostulantRepository.findByIdliste(id);
+    }
+
 
 
 }

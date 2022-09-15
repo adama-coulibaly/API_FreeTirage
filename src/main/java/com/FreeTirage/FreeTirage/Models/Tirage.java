@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -20,5 +21,7 @@ public class Tirage {
     private Date date_tirage;
     private int nbre_postulant_tirer;
 
-
+    @ManyToOne
+    @JoinColumn(name = "id_liste")
+    private ListePostulant listePostulantList;
 }

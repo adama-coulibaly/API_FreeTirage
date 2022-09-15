@@ -26,6 +26,16 @@ public class TirageServiceImpl implements TirageService {
     }
 
     @Override
+    public String nombreT() {
+        return tirageRepository.nombreTirage();
+    }
+
+    @Override
+    public String nombreTliste() {
+        return tirageRepository.nombreTirageParListe();
+    }
+
+    @Override
     public List<Tirage> lire() {
         return tirageRepository.findAll();
     }
@@ -76,6 +86,16 @@ public class TirageServiceImpl implements TirageService {
     @Override
     public Iterable<Object[]> personnesTirer(String libelle) {
         return tirageRepository.personnesTirer(libelle);
+    }
+
+    @Override
+    public List<Tirage> trouverTirageParListe(Long id_liste) {
+        return tirageRepository.trouverTirageParListe(id_liste);
+    }
+
+    @Override
+    public List<Object> lesPersonnesParTirage(Long tirages_id_tirage) {
+        return tirageRepository.personnesParTirage(tirages_id_tirage);
     }
 
 }

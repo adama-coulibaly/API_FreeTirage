@@ -10,12 +10,14 @@ import java.util.List;
 
 public interface ListePostulantRepository extends JpaRepository<ListePostulant, Long> {
 
+@Query(value = "SELECT COUNT(*) FROM `liste_postulant` WHERE liste_postulant.nbre_tirage != 0;",nativeQuery = true)
+public int listeTirer();
 
-    @Query(value = "SELECT postulants.id_postulant FROM postulants WHERE postulants.id_postulant = :ID",nativeQuery = true)
 
-    Iterable<Object[]> mesID(@Param("ID") Long ID);
 
     ListePostulant findByLibelle(String libelle);
+
+    List<ListePostulant> findByIdliste(Long idliste);
 
 
 }
